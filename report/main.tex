@@ -22,7 +22,7 @@
 % to avoid loading the natbib package, add option nonatbib:
 %    \usepackage[nonatbib]{neurips_2022}
 
-
+\usepackage{graphicx}
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
 \usepackage{hyperref}       % hyperlinks
@@ -123,18 +123,190 @@ showtabs=false, tabsize=2,
 
 \section{Study case and Data} 
 To further understand and practice the knowledge we have obtained from lectures. A case of classification problem was given that we can apply different methods on the data and understand the charactoristics and behaviours of these methods.
+
 \subsection{Case and data description}
+To help the city of Washington, D.C. understand whether increasing the number of public bikes is neccessary at some certain hour, a machine learning model is expected to predict the public bike demand for given temporal and meteorological features. \\
+
+A data set contains 1600 random obeservations is provided for the model training. The target variable is binary for "high" or "low" demand for increasing bikes' number. The description of the features are given in Table \ref{tab:feature_description}
+
+\begin{table}[h!]
+\caption{Labels and features in the data set \citep{smlproject2024}}
+\label{tab:feature_description}
+\centering
+\begin{tabular}{p{4cm} p{10cm}}
+\toprule
+\textbf{Feature Name} & \textbf{Description} \\
+\midrule
+
+increase\_stock \newline (prediction label) &
+\textbf{low\_bike\_demand} – no need to increase the number of bikes \newline
+\textbf{high\_bike\_demand} – the number of bikes needs to be increased \\
+\midrule
+
+hour\_of\_day & Hour of the day (from 0 to 23) \\
+day\_of\_week & Day of the week (from 0 – Monday to 6 – Sunday) \\
+month & Month (from 0 – January to 12 – December) \\
+holiday & If it is a holiday or not (0 – no holiday, 1 – holiday) \\
+weekday & If it is a weekday or not (0 – weekend, 1 – weekday) \\
+summertime & If it is summertime or not (0 – no summertime, 1 – summertime) \\
+temp & Temperature in Celsius degrees \\
+dew & Dew point in Celsius degrees \\
+humidity & Relative humidity (percentage) \\
+precip & Precipitation in mm \\
+snow & Amount of snow in the last hour in mm \\
+snow\_depth & Accumulated amount of snow in mm \\
+windspeed & Wind speed in km/h \\
+cloudcover & Percentage of the city covered in clouds \\
+visibility & Distance in km at which objects or landmarks can be clearly seen and identified \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 \subsection{Exploratory data analysis}
+Expolratory data analysis has been conducted to gain the knowledge of relations among features in the dataset. Also, following questions in the project introduction are answered in this section. 
+
+\begin{enumerate}
+  \item\label{question:i} Which are the numerical features and which are the categorical features? 
+  \item\label{question:ii} Is there any trend to need increase in the availability of
+\end{enumerate}
+
+Out of that the ways to treat categorical features are different from numerical features, the featuresa are sorted into two groupd, numerical and categorical. This sort of them can be identified according to Table \ref{tab:feature_description}. The two groups are shown in Table \ref{tab:cat_num_list}, which also answers Quesiton \ref{question:i}.
+
+\begin{table}[h!]
+\caption{Categorical and numerical features.}
+\label{tab:cat_num_list}
+\centering
+  \begin{tabular}{p{4cm} p{4cm}}
+  \toprule
+  \textbf{Categorical features} & \textbf{Numerical features} \\
+  \midrule
+  holiday        & hour\_of\_day \\
+  weekday        & day\_of\_week \\
+  summertime     & month \\
+  snow           & temp \\
+  increase\_stock & dew \\
+                & humidity \\
+                & precip \\
+                & snow\_depth \\
+                & windspeed \\
+                & cloudcover \\
+                & visibility \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+For categorical features, first step done was to see the label balance. The result is shown in Figure \ref{fig:cate_dist}. One thing to be noted is that the feature "snow" has only one label. A flat feature will not have input to the model, thus it was excloded from training set. This will be also seen in the correlation analysis.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/count_plot_category.png}
+  \caption{Label counts for categorical features}
+  \label{fig:cate_dist}
+\end{figure}
+
+Similarily, histgram plot was generated to visualize the distribution of numerical features (shown in Figure \ref{fig:num_dist}). 
+
+\begin{figure}
+  \begin{small}
+    \begin{center}
+      \includegraphics[width=0.95\textwidth]{figures/num_dist.png}
+    \end{center}
+    \caption{histgrams of numerical features}
+    \label{fig:num_dist}
+  \end{small}
+\end{figure}
+
+To understand the correlation among features, mostly between targets and other features, correlation analysis has been done ploting corrolation maps, shown in Figure \ref{fig:correlation}
+
+\begin{figure}
+  \begin{small}
+    \begin{center}
+      \includegraphics[width=0.95\textwidth]{figures/corr_map.png}
+    \end{center}
+    \caption{Corrolation among features}
+    \label{fig:correlation}
+  \end{small}
+\end{figure}
+
+Droping out the smaller correlated features ($correlation \geq 0.1$), the left ones are: "temp", "humidity", "hour\_of\_day", "summertime", "dew", "weekday", and "visibility". To more intuitively see if any features can help seperate the target label. Figure \ref{fig:box_and_dist} was ploted. 
+
+\begin{figure}
+  \begin{small}
+    \begin{center}
+      \includegraphics[width=0.95\textwidth]{figures/box_and_hist_features.png}
+
+    \end{center}
+    \caption{Boxs and Histgrams for features with different targets laebls}
+    \label{fig:box_and_dist}
+  \end{small}
+\end{figure}
+
+Finally, with all analysis and figures above, the Question \ref{question:ii} can be answered. \\ 
+It is seen that the label "1" ("high\_bike\_demand") is concerntrated around daytime, growth starts from early morning, drops till late evening after reaching its peak at 15:00 to 16:00. Weekday has more "high\_bike\_demand" than weekends. \\ 
+Temperature also has impact on bike demand, more bike are needed when temperture is in a comfortable region, 20 ~ 30 degC in data. This can also interprets the trend in the summertime, temperature is higher in summer, similarily for dew point.
 
 \section{Methodology}
-
 \subsection{Machine learning models}
 
-\subsection{Metrics}
+\subsection{Validation}
+\subsubsection{Cross-validation}
+\subsubsection{Metrics}
+\subsubsection{Hyperparameter Optimisation}
 
 
 \section{Results}
+\subsection{Boosting}
+Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table \ref{tab:models_performance}
+
+\begin{table}
+    \caption{Boosting models perfomance}
+    \label{tab:models_perfomance}
+    \begin{center}
+      \begin{tabular}{l|l|l|l|l}
+        \toprule
+        \textbf{Model} & \textbf{Training time (s)} & \textbf{Precision (Weighted)} & \textbf{Recall (Weighted)} & \textbf{F1 score (Weighted)} \\ 
+      
+        \midrule
+        AdaBoostingClassifier       & 0.008 & 0.643 & 0.630 & 0.633 \\ 
+        GradientBoostingClassifier  & 0.109 & 0.773 & 0.655 & 0.708 \\
+        CatBoostClassifier          & 0.593 & 0.783 & 0.693 & 0.734 \\
+      
+        \bottomrule
+      \end{tabular}
+    \end{center}
+\end{table}
+
+According to the perfomance, CatBoostClassifier was chosen to the model to be Optimized on Hyperparameters, where \textit{GridSearch} was used. The result is shown as a confusion matrix (Figure \ref{fig:cat_confusion}and also in Table \ref{tab:cat_performance}.
+
+\begin{figure}
+  \begin{small}
+    \begin{center}
+      \includegraphics[width=0.95\textwidth]{figures/confusion_matrix.png}
+    \end{center}
+    \caption{Confustion matrix of Optimized CatBoostClassifier}
+    \label{fig:cat_confusion}
+  \end{small}
+\end{figure}
+
+\begin{table}
+  \begin{small}
+    \caption{Performance of optimized CatBoostClassifier}
+    \label{tab:cat_performance}
+    \begin{center}
+      \begin{tabular}{l|l|l}
+        \toprule
+        \textbf{Precision (Weighted)} & \textbf{Recall (Weighted)} & \textbf{F1 score (Weighted)} \\
+        
+        \midrule
+        0.85 & 0.85 & 0.85 \\
+    
+        \bottomrule
+      \end{tabular}
+    \end{center}
+  \end{small}
+\end{table}
+
+
 
 \section{Discussion}
 
@@ -142,32 +314,9 @@ To further understand and practice the knowledge we have obtained from lectures.
 
 
 
-\citep{breiman2001randomforest}   % (Breiman, 2001)
-\citet{hastie2009elements}        % Hastie et al. (2009)
+% \citep{breiman2001randomforest}   % (Breiman, 2001)
+% \citet{hastie2009elements}        % Hastie et al. (2009)
 
-
-\begin{figure}
-  \centering
-  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-  \caption{Sample figure caption.}
-\end{figure}
-
-\begin{table}
-  \caption{Sample table title}
-  \label{sample-table}
-  \centering
-  \begin{tabular}{lll}
-    \toprule
-    \multicolumn{2}{c}{Part}                   \\
-    \cmidrule(r){1-2}
-    Name     & Description     & Size ($\mu$m) \\
-    \midrule
-    Dendrite & Input terminal  & $\sim$100     \\
-    Axon     & Output terminal & $\sim$10      \\
-    Soma     & Cell body       & up to $10^6$  \\
-    \bottomrule
-  \end{tabular}
-\end{table}
 
 
 
@@ -183,4 +332,5 @@ This section will often be part of the supplemental material.
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
+
 \end{document}
