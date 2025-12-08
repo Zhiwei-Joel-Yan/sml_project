@@ -21,7 +21,8 @@
 
 % to avoid loading the natbib package, add option nonatbib:
 %    \usepackage[nonatbib]{neurips_2022}
-
+\usepackage{amsmath}
+\usepackage{makecell}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
@@ -113,11 +114,7 @@ showtabs=false, tabsize=2,
 
 
 \begin{abstract}
-  The abstract paragraph should be indented \nicefrac{1}{2}~inch (3~picas) on
-  both the left- and right-hand margins. Use 10~point type, with a vertical
-  spacing (leading) of 11~points.  The word \textbf{Abstract} must be centered,
-  bold, and in point size 12. Two line spaces precede the abstract. The abstract
-  must be limited to one paragraph.
+  To fulfill the demand of public bike that more fossil based transportation cans be replaced by bike and contribute to alleviating climate change, the city of Washington D.C. has recorded the observations high bike demand along with temporal and meteorological features. With this data, this project study is dedicated to help the city to predict the necessity of increasing number of bikes at certain hours. To achieve this goal, methods including Logistic Regression, KNN, bagging and boosting are deployeds to predict the target label with given feature. 
 \end{abstract}
 
 
@@ -129,37 +126,37 @@ To help the city of Washington, D.C. understand whether increasing the number of
 
 A data set contains 1600 random obeservations is provided for the model training. The target variable is binary for "high" or "low" demand for increasing bikes' number. The description of the features are given in Table \ref{tab:feature_description}
 
-\begin{table}[h!]
-\caption{Labels and features in the data set \citep{smlproject2024}}
-\label{tab:feature_description}
-\centering
-\begin{tabular}{p{4cm} p{10cm}}
-\toprule
-\textbf{Feature Name} & \textbf{Description} \\
-\midrule
+\begin{table}[!ht]
+  \caption{Labels and features in the data set \citep{smlproject2024}}
+  \label{tab:feature_description}
+  \centering
+    \begin{tabular}{p{4cm} p{8cm}}
+    \toprule
+    \textbf{Feature Name} & \textbf{Description} \\
 
-increase\_stock \newline (prediction label) &
-\textbf{low\_bike\_demand} – no need to increase the number of bikes \newline
-\textbf{high\_bike\_demand} – the number of bikes needs to be increased \\
-\midrule
-
-hour\_of\_day & Hour of the day (from 0 to 23) \\
-day\_of\_week & Day of the week (from 0 – Monday to 6 – Sunday) \\
-month & Month (from 0 – January to 12 – December) \\
-holiday & If it is a holiday or not (0 – no holiday, 1 – holiday) \\
-weekday & If it is a weekday or not (0 – weekend, 1 – weekday) \\
-summertime & If it is summertime or not (0 – no summertime, 1 – summertime) \\
-temp & Temperature in Celsius degrees \\
-dew & Dew point in Celsius degrees \\
-humidity & Relative humidity (percentage) \\
-precip & Precipitation in mm \\
-snow & Amount of snow in the last hour in mm \\
-snow\_depth & Accumulated amount of snow in mm \\
-windspeed & Wind speed in km/h \\
-cloudcover & Percentage of the city covered in clouds \\
-visibility & Distance in km at which objects or landmarks can be clearly seen and identified \\
-\bottomrule
-\end{tabular}
+    midrule
+    increase\_stock \newline (prediction label) &
+    \textbf{low\_bike\_demand} – no need to increase the number of bikes \newline
+    \textbf{high\_bike\_demand} – the number of bikes needs to be increased \\
+    \
+    midrule
+    hour\_of\_day & Hour of the day (from 0 to 23) \\
+    day\_of\_week & Day of the week (from 0 – Monday to 6 – Sunday) \\
+    month & Month (from 0 – January to 12 – December) \\
+    holiday & If it is a holiday or not (0 – no holiday, 1 – holiday) \\
+    weekday & If it is a weekday or not (0 – weekend, 1 – weekday) \\
+    summertime & If it is summertime or not (0 – no summertime, 1 – summertime) \\
+    temp & Temperature in Celsius degrees \\
+    dew & Dew point in Celsius degrees \\
+    humidity & Relative humidity (percentage) \\
+    precip & Precipitation in mm \\
+    snow & Amount of snow in the last hour in mm \\
+    snow\_depth & Accumulated amount of snow in mm \\
+    windspeed & Wind speed in km/h \\
+    cloudcover & Percentage of the city covered in clouds \\
+    visibility & Distance in km at which objects or landmarks can be clearly seen and identified \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 
@@ -173,7 +170,7 @@ Expolratory data analysis has been conducted to gain the knowledge of relations 
 
 Out of that the ways to treat categorical features are different from numerical features, the featuresa are sorted into two groupd, numerical and categorical. This sort of them can be identified according to Table \ref{tab:feature_description}. The two groups are shown in Table \ref{tab:cat_num_list}, which also answers Quesiton \ref{question:i}.
 
-\begin{table}[h!]
+\begin{table}[!ht]
 \caption{Categorical and numerical features.}
 \label{tab:cat_num_list}
 \centering
@@ -197,7 +194,7 @@ Out of that the ways to treat categorical features are different from numerical 
 \end{table}
 
 For categorical features, first step done was to see the label balance. The result is shown in Figure \ref{fig:cate_dist}. One thing to be noted is that the feature "snow" has only one label. A flat feature will not have input to the model, thus it was excloded from training set. This will be also seen in the correlation analysis.
-\begin{figure}[h!]
+\begin{figure}[!ht]
   \centering
   \includegraphics[width=0.95\linewidth]{figures/count_plot_category.png}
   \caption{Label counts for categorical features}
@@ -206,7 +203,7 @@ For categorical features, first step done was to see the label balance. The resu
 
 Similarily, histgram plot was generated to visualize the distribution of numerical features (shown in Figure \ref{fig:num_dist}). 
 
-\begin{figure}
+\begin{figure}[!ht]
   \begin{small}
     \begin{center}
       \includegraphics[width=0.95\textwidth]{figures/num_dist.png}
@@ -218,10 +215,10 @@ Similarily, histgram plot was generated to visualize the distribution of numeric
 
 To understand the correlation among features, mostly between targets and other features, correlation analysis has been done ploting corrolation maps, shown in Figure \ref{fig:correlation}
 
-\begin{figure}
+\begin{figure}[!ht]
   \begin{small}
     \begin{center}
-      \includegraphics[width=0.95\textwidth]{figures/corr_map.png}
+      \includegraphics[width=0.8\textwidth]{figures/corr_map.png}
     \end{center}
     \caption{Corrolation among features}
     \label{fig:correlation}
@@ -230,7 +227,7 @@ To understand the correlation among features, mostly between targets and other f
 
 Droping out the smaller correlated features ($correlation \geq 0.1$), the left ones are: "temp", "humidity", "hour\_of\_day", "summertime", "dew", "weekday", and "visibility". To more intuitively see if any features can help seperate the target label. Figure \ref{fig:box_and_dist} was ploted. 
 
-\begin{figure}
+\begin{figure}[!ht]
   \begin{small}
     \begin{center}
       \includegraphics[width=0.95\textwidth]{figures/box_and_hist_features.png}
@@ -247,63 +244,101 @@ Temperature also has impact on bike demand, more bike are needed when temperture
 
 \section{Methodology}
 \subsection{Machine learning models}
+\subsubsection{Boosting}
+Boosting is an emsenble method which is built on the idea that even a week model can capture some patterns between target variables and given features. Starting from a base model, optmizing it based on the returned error can produce a new model which would become the base for next model. By ensembling the predictions from these models, the intention of boosting is to reduce bias\citep{Lindholm2022sml}.\\
+
+In this study, three maintream boosting algorithm were deployed, \textbf{AdaBoost}\citep{Lindholm2022sml}, \textbf{GradientBoost}\citep{Lindholm2022sml}, and \textbf{CatBoost}\citep{prokhorenkova2018catboost}. The methods can expressed as following equations.
+
+\begin{equation}
+  \text{AdaBoost:\space \space}
+  \hat{y}^{(B)}_{\text{boost}}(\mathbf{x})
+  = \operatorname{sign}\!\left(
+      \sum_{b=1}^{B} \alpha^{(b)} \hat{y}^{(b)}(\mathbf{x})
+    \right)
+  \label{eq:adaboost}
+\end{equation}
+
+
+\begin{equation}
+  \text{GradientBoost:\space \space}
+  f^{(B)}(\mathbf{x}) 
+  = \sum_{b=1}^{B} \alpha^{(b)} f^{(b)}(\mathbf{x}),
+  \label{eq:gradiantboost}
+\end{equation}
+
+\begin{equation}
+  \text{CatBoost:\space \space} 
+  f^{(B)}(\mathbf{x})
+  = \sum_{b=1}^{B} \eta^{(b)} \, T^{(b)}(\mathbf{x})
+  \label{eq:catboost}
+\end{equation}
+
+
+
 
 \subsection{Validation}
-\subsubsection{Cross-validation}
-\subsubsection{Metrics}
-\subsubsection{Hyperparameter Optimisation}
+K-fold method with 5 subset was used for cross-validation to the deployed models.
+Considering that label are imbalanced in the target variable, accuracy would not be a good choice for perfomance measurement. Precision, recall, and F1-score are used. 
+
+
 
 
 \section{Results}
 \subsection{Boosting}
 Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table \ref{tab:models_performance}
 
-\begin{table}
-    \caption{Boosting models perfomance}
-    \label{tab:models_perfomance}
-    \begin{center}
-      \begin{tabular}{l|l|l|l|l}
-        \toprule
-        \textbf{Model} & \textbf{Training time (s)} & \textbf{Precision (Weighted)} & \textbf{Recall (Weighted)} & \textbf{F1 score (Weighted)} \\ 
-      
-        \midrule
-        AdaBoostingClassifier       & 0.008 & 0.643 & 0.630 & 0.633 \\ 
-        GradientBoostingClassifier  & 0.109 & 0.773 & 0.655 & 0.708 \\
-        CatBoostClassifier          & 0.593 & 0.783 & 0.693 & 0.734 \\
-      
-        \bottomrule
-      \end{tabular}
-    \end{center}
+
+\begin{table}[!ht]
+  \centering
+  \caption{Boosting models performance}
+  \label{tab:models_performance}
+  \begin{tabular}{
+    l
+    cc
+    cc
+    cc
+    c
+  }
+    \toprule
+
+    \textbf{Model} &
+    \multicolumn{2}{c}{\textbf{Precision}} &
+    \multicolumn{2}{c}{\textbf{Recall}} &
+    \multicolumn{2}{c}{\textbf{F1 Score}} &
+    \textbf{Train Time (s)} \\
+
+    \cmidrule(lr){2-3}
+    \cmidrule(lr){4-5}
+    \cmidrule(lr){6-7}
+
+    & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \\
+
+    \midrule
+    AdaBoostClassifier          & 0.6427 & 0.9161 & 0.6298 & 0.9184 & 0.6334 & 0.9170 & 0.0035 \\
+    GradientBoostingClassifier & 0.7729 & 0.9238 & 0.6555 & 0.9549 & 0.7084 & 0.9391 & 0.0890 \\
+    CatBoostClassifier         & 0.7828 & 0.9317 & 0.6932 & 0.9549 & 0.7337 & 0.9431 & 0.5812 \\
+    \bottomrule
+    
+  \end{tabular}
 \end{table}
 
-According to the perfomance, CatBoostClassifier was chosen to the model to be Optimized on Hyperparameters, where \textit{GridSearch} was used. The result is shown as a confusion matrix (Figure \ref{fig:cat_confusion}and also in Table \ref{tab:cat_performance}.
 
-\begin{figure}
-  \begin{small}
-    \begin{center}
-      \includegraphics[width=0.95\textwidth]{figures/confusion_matrix.png}
-    \end{center}
-    \caption{Confustion matrix of Optimized CatBoostClassifier}
-    \label{fig:cat_confusion}
-  \end{small}
-\end{figure}
+According to the perfomance, CatBoostClassifier was chosen to the model to be Optimized on Hyperparameters, where \textit{GridSearch} was used. The result is shown in Table \ref{tab:cat_performance}.
 
-\begin{table}
-  \begin{small}
+\begin{table}[!ht]
+  \centering
     \caption{Performance of optimized CatBoostClassifier}
     \label{tab:cat_performance}
-    \begin{center}
-      \begin{tabular}{l|l|l}
-        \toprule
-        \textbf{Precision (Weighted)} & \textbf{Recall (Weighted)} & \textbf{F1 score (Weighted)} \\
-        
-        \midrule
-        0.85 & 0.85 & 0.85 \\
+  \begin{tabular}{ccccc}
+    \toprule
+    \textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
     
-        \bottomrule
-      \end{tabular}
-    \end{center}
-  \end{small}
+    \midrule
+    0 & 0.92 & 0.91 & 0.91 & 270 \\
+    1 & 0.54 & 0.58 & 0.56 & 50 \\
+
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 
@@ -319,7 +354,8 @@ According to the perfomance, CatBoostClassifier was chosen to the model to be Op
 
 
 
-
+\bibliographystyle{unsrtnat}
+\bibliography{references}
 \appendix
 
 
@@ -330,7 +366,6 @@ Optionally include extra information (complete proofs, additional experiments an
 This section will often be part of the supplemental material.
 
 
-\bibliographystyle{unsrtnat}
-\bibliography{references}
+
 
 \end{document}
