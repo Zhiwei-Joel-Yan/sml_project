@@ -7,8 +7,7 @@
 
 
 % ready for submission
-\usepackage{neurips_2022}
-
+% \usepackage{neurips_2022} % neurips_2022.sty is missing; upload it to your project
 
 % to compile a preprint version, e.g., for submission to arXiv, add add the
 % [preprint] option:
@@ -191,7 +190,7 @@ Out of that the ways to treat categorical features are different from numerical 
 For categorical features, first step done was to see the label balance. The result is shown in Figure \ref{fig:cate_dist}. One thing to be noted is that the feature "snow" has only one label. A flat feature will not have input to the model, thus it was excloded from training set. This will be also seen in the correlation analysis. Similarily, histgram plot was generated to visualize the distribution of numerical features (shown in Figure \ref{fig:num_dist}). 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.95\linewidth]{figures/count_plot_category.png}
+  \includegraphics[width=0.95\linewidth]{count_plot_category.png}
   \caption{Label counts for categorical features}
   \label{fig:cate_dist}
 \end{figure}
@@ -200,7 +199,7 @@ For categorical features, first step done was to see the label balance. The resu
 \begin{figure}[!ht]
   \begin{small}
     \begin{center}
-      \includegraphics[width=0.95\textwidth]{figures/num_dist.png}
+      \includegraphics[width=0.95\textwidth]{num_dist.png}
     \end{center}
     \caption{histgrams of numerical features}
     \label{fig:num_dist}
@@ -212,7 +211,7 @@ To understand the correlation among features, mostly between targets and other f
 \begin{figure}[!ht]
   \begin{small}
     \begin{center}
-      \includegraphics[width=0.9\textwidth]{figures/corr_map.png}
+      \includegraphics[width=0.9\textwidth]{corr_map.png}
     \end{center}
     \caption{Corrolation among features}
     \label{fig:correlation}
@@ -224,7 +223,7 @@ Droping out the smaller correlated features ($correlation \geq 0.1$), the left o
 \begin{figure}[!ht]
   \begin{small}
     \begin{center}
-      \includegraphics[width=0.9\textwidth]{figures/box_and_hist_features.png}
+      \includegraphics[width=0.9\textwidth]{box_and_hist_features.png}
 
     \end{center}
     \caption{Boxs and Histgrams for features with different targets laebls}
@@ -266,7 +265,43 @@ In this study, three maintream boosting algorithm were deployed, \textbf{AdaBoos
   = \sum_{b=1}^{B} \eta^{(b)} \, T^{(b)}(\mathbf{x})
   \label{eq:catboost}
 \end{equation}
+\subsubsection{Logistic Regression}
+Logistic Regression is one of the most common supervised machine learning models for binary classification problems. Unlike Linear Regression, it uses a sigmoid function, where the raw output value is passed through and converted into a probability between 0 and 1. Since our problem has two possible outcomes, this model is specifically a binomial logistic regression. \\
 
+Logistic Regression first calculates the linear combination of the input features:
+
+\[
+z = w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_n x_n
+\]
+
+Here, \(x_1, x_2, \ldots, x_n\) are the input feature values, \(w_0, w_1, \ldots, w_n\) are the model's learned weights, and \(z\) is the model's internal score. This value is then passed through the sigmoid function to convert it into a probability between 0 and 1.\\
+
+% \textbf{Sigmoid Activation Function}
+
+% The linear output \(z\), which can range from \(-\infty\) to \(+\infty\), is passed through the sigmoid activation function to transform it into a probability \(\mathbb{P}\) between 0 and 1.
+  
+% \begin{equation}
+% \mathbb{P} = \sigma(z) = \frac{1}{1 + e^{-z}}
+% \end{equation}
+
+% Here, \(\mathbb{P}\) represents the predicted probability, \(\sigma(z)\) is the sigmoid function which takes the linear combination output \(z\), and \(e^{-z}\) adjusts the curve so that the probability increases as the output \(z\) increases.  
+
+% In the logistic function, classification is made by setting a decision boundary, usually 0.5. If \(\mathbb{P}\) is greater than 0.5, the instance is classified as 1; otherwise, it is classified as 0.
+\subsubsection{K-Nearest Neighbours}
+
+K-Nearest Neighbours (KNN) is a supervised machine learning algorithm used for both classification and regression problems. It works by finding the \(K\) nearest points to a given data point and making predictions based on the majority class for classification or the average value for regression.
+
+KNN is a simple, non-parametric, and lazy learning algorithm because it performs computation during prediction rather than during training.
+
+The distance between two data points, \(\mathbf{x}_1\) and \(\mathbf{x}_2\), is measured using the Euclidean distance formula:
+
+\begin{equation}
+d(\mathbf{x}_1, \mathbf{x}_2) = \sqrt{(x_{11} - x_{21})^2 + (x_{12} - x_{22})^2 + \cdots + (x_{1n} - x_{2n})^2}
+\end{equation}
+
+For a new data point \(\mathbf{X}_{\text{new}}\), the algorithm calculates its distance from all instances in the dataset and selects the \(K\) instances with the smallest distances. The final predicted class is determined based on the majority vote among these \(K\) nearest neighbours.  
+
+It is important to note that if \(K\) is too small, the model becomes overfitted. If \(K\) is too large, the model becomes underfitted. In our project, we selected the optimal \(K\) value using the \texttt{GridSearchCV} function.
 
 
 
