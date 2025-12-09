@@ -7,8 +7,7 @@
 
 
 % ready for submission
-\usepackage{neurips_2022}
-
+% \usepackage{neurips_2022} % neurips_2022.sty is missing; upload it to your project
 
 % to compile a preprint version, e.g., for submission to arXiv, add add the
 % [preprint] option:
@@ -111,8 +110,8 @@ showtabs=false, tabsize=2,
 
 
 \begin{abstract}
-  To fulfill the demand of public bike that more fossil based transportation cans be replaced by bike and contribute to alleviating climate change, the city of Washington D.C. has recorded the observations high bike demand along with temporal and meteorological features. With this data, this project study is dedicated to help the city to predict the necessity of increasing number of bikes at certain hours. To achieve this goal, methods including Logistic Regression, KNN, bagging and boosting are deployed to predict the target label with given feature.  \\ 
-  \textit{Number of group members: 3}.
+  To fulfill the demand of public bike that more fossil based transportation cans be replaced by bike and contribute to alleviating climate change, the city of Washington D.C. has recorded the observations high bike demand along with temporal and meteorological features. With this data, this project study is dedicated to help the city to predict the necessity of increasing number of bikes at certain hours. To achieve this goal, methods including Logistic Regression, KNN, bagging and boosting are deployed to predict the target label with given feature.  
+  Number of group members: 3.
 \end{abstract}
 
 
@@ -122,7 +121,7 @@ To further understand and practice the knowledge we have obtained from lectures.
 \subsection{Case and data description}
 To help the city of Washington, D.C. understand whether increasing the number of public bikes is neccessary at some certain hour, a machine learning model is expected to predict the public bike demand for given temporal and meteorological features. \\
 
-A data set contains 1600 random obeservations is provided for the model training. The target variable is binary for "high" or "low" demand for increasing bikes' number. The description of the features are given in Table~\ref{tab:feature_description}
+A data set contains 1600 random obeservations is provided for the model training. The target variable is binary for "high" or "low" demand for increasing bikes' number. The description of the features are given in Table \ref{tab:feature_description}
 
 \begin{table}[!ht]
   \caption{Labels and features in the data set \citep{smlproject2024}}
@@ -166,7 +165,7 @@ Expolratory data analysis has been conducted to gain the knowledge of relations 
   \item\label{question:ii} Is there any trend to need increase in the availability of bycycles?
 \end{enumerate}
 
-Out of that the ways to treat categorical features are different from numerical features, the features are sorted into two groupd, numerical and categorical. This sort of them can be identified according to Table~\ref{tab:feature_description}. The two groups are shown in Table~\ref{tab:cat_num_list}, which also answers Quesiton~\ref{question:i}.
+Out of that the ways to treat categorical features are different from numerical features, the features are sorted into two groupd, numerical and categorical. This sort of them can be identified according to Table \ref{tab:feature_description}. The two groups are shown in Table \ref{tab:cat_num_list}, which also answers Quesiton \ref{question:i}.
 
 \begin{table}[!ht]
 \caption{Categorical and numerical features.}
@@ -188,10 +187,10 @@ Out of that the ways to treat categorical features are different from numerical 
   \end{tabular}
 \end{table}
 
-For categorical features, first step done was to see the label balance. The result is shown in Figure~\ref{fig:cate_dist}. One thing to be noted is that the feature "snow" has only one label. A flat feature will not have input to the model, thus it was excloded from training set. This will be also seen in the correlation analysis. Similarily, histgram plot was generated to visualize the distribution of numerical features (shown in Figure~\ref{fig:num_dist}). 
+For categorical features, first step done was to see the label balance. The result is shown in Figure \ref{fig:cate_dist}. One thing to be noted is that the feature "snow" has only one label. A flat feature will not have input to the model, thus it was excloded from training set. This will be also seen in the correlation analysis. Similarily, histgram plot was generated to visualize the distribution of numerical features (shown in Figure \ref{fig:num_dist}). 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.95\linewidth]{figures/count_plot_category.png}
+  \includegraphics[width=0.95\linewidth]{report/figures/count_plot_category.png}
   \caption{Label counts for categorical features}
   \label{fig:cate_dist}
 \end{figure}
@@ -200,31 +199,31 @@ For categorical features, first step done was to see the label balance. The resu
 \begin{figure}[!ht]
   \begin{small}
     \begin{center}
-      \includegraphics[width=0.95\textwidth]{figures/num_dist.png}
+      \includegraphics[width=0.95\textwidth]{report/figures/num_dist.png}
     \end{center}
     \caption{histgrams of numerical features}
     \label{fig:num_dist}
   \end{small}
 \end{figure}
 
-To understand the correlation among features, mostly between targets and other features, correlation analysis has been done ploting corrolation maps, shown in Figure~\ref{fig:correlation}
+To understand the correlation among features, mostly between targets and other features, correlation analysis has been done ploting corrolation maps, shown in Figure \ref{fig:correlation}
 
 \begin{figure}[!ht]
   \begin{small}
     \begin{center}
-      \includegraphics[width=0.9\textwidth]{figures/corr_map.png}
+      \includegraphics[width=0.9\textwidth]{report/figures/corr_map.png}
     \end{center}
     \caption{Corrolation among features}
     \label{fig:correlation}
   \end{small}
 \end{figure}
 
-Droping out the smaller correlated features ($correlation \geq 0.1$), the left ones are: "temp", "humidity", "hour\_of\_day", "summertime", "dew", "weekday", and "visibility". To more intuitively see if any features can help seperate the target label. Figure~\ref{fig:box_and_dist} was ploted. 
+Droping out the smaller correlated features ($correlation \geq 0.1$), the left ones are: "temp", "humidity", "hour\_of\_day", "summertime", "dew", "weekday", and "visibility". To more intuitively see if any features can help seperate the target label. Figure \ref{fig:box_and_dist} was ploted. 
 
 \begin{figure}[!ht]
   \begin{small}
     \begin{center}
-      \includegraphics[width=0.9\textwidth]{figures/box_and_hist_features.png}
+      \includegraphics[width=0.9\textwidth]{report/figures/box_and_hist_features.png}
 
     \end{center}
     \caption{Boxs and Histgrams for features with different targets laebls}
@@ -232,12 +231,11 @@ Droping out the smaller correlated features ($correlation \geq 0.1$), the left o
   \end{small}
 \end{figure}
 
-Finally, with all analysis and figures above, the Question~\ref{question:ii} can be answered. \\ 
+Finally, with all analysis and figures above, the Question \ref{question:ii} can be answered. \\ 
 It is seen that the label "1" ("high\_bike\_demand") is concerntrated around daytime, growth starts from early morning, drops till late evening after reaching its peak at 15:00 to 16:00. Weekday has more "high\_bike\_demand" than weekends. \\ 
 Temperature also has impact on bike demand, more bike are needed when temperture is in a comfortable region, 20 ~ 30 degC in data. This can also interprets the trend in the summertime, temperature is higher in summer, similarily for dew point.
 
-\section{Methodology} 
-\label{sec:methodology}
+\section{Methodology}
 \subsection{Machine learning models}
 \subsubsection{Boosting}
 Boosting is an emsenble method which is built on the idea that even a week model can capture some patterns between target variables and given features. Starting from a base model, optmizing it based on the returned error can produce a new model which would become the base for next model. By ensembling the predictions from these models, the intention of boosting is to reduce bias\citep{Lindholm2022sml}.\\
@@ -305,11 +303,15 @@ For a new data point \(\mathbf{X}_{\text{new}}\), the algorithm calculates its d
 
 It is important to note that if \(K\) is too small, the model becomes overfitted. If \(K\) is too large, the model becomes underfitted. In our project, we selected the optimal \(K\) value using the \texttt{GridSearchCV} function.
 
+\subsubsection{Tree-based methods}
+Tree-based methods rely on recursively splitting the feature space into smaller, more homogeneous regions using decision rules. At each internal node, the data is split based on a single feature until a stopping criteria is met and a threshold value chosen to maximize the homogeneity of the resulting subsets.
 
+
+In this study, three main tree-based approaches were explored: Decision Tree, Random Forest, and Bagging Classifier. A Decision Tree is prone to overfitting due to high variance. In contrast, the Bagging Classifier and Random Forest Classifier reduce this variance by training many independent trees on bootstrapped samples of the dataset and averaging their predictions. The Random Forest further extends to random feature selection at each split, reducing correlation among individual trees and typically improving generalization performance.
 
 \subsection{Validation}
 K-fold method with 5 subset was used for cross-validation to the deployed models.
-Considering that label are imbalanced in the target variable, metrics like accuracy would not be a good choice for perfomance measurement. F-score, given by equation~\ref{eq:f-score}, is used for measuring the perfomance in this case.  
+Considering that label are imbalanced in the target variable, metrics like accuracy would not be a good choice for perfomance measurement. F-score, given by equation \ref{eq:f-score}, is used for measuring the perfomance in this case.  
 
 \begin{equation}
   F_1 = 2 \cdot \frac{precision \cdot recall}{precision + recall} = \frac{2TP}{2TP + FP + FN}
@@ -318,69 +320,58 @@ Considering that label are imbalanced in the target variable, metrics like accur
 
 
 \section{Results}
-% \subsection{Boosting}
-% Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table~\ref{tab:models_performance}
+\subsection{Boosting}
+Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table \ref{tab:models_performance}
 
 
-% \begin{table}[!ht]
-%   \centering
-%   \caption{Boosting models performance}
-%   \label{tab:models_performance}
-%   \begin{tabular}{
-%     l
-%     cc
-%     cc
-%     cc
-%     c
-%   }
-%     \toprule
+\begin{table}[!ht]
+  \centering
+  \caption{Boosting models performance}
+  \label{tab:models_performance}
+  \begin{tabular}{
+    l
+    cc
+    cc
+    cc
+    c
+  }
+    \toprule
 
-%     \multirow{2}{*}{\textbf{Model}} &
-%     \multicolumn{2}{c}{\textbf{Precision}} &
-%     \multicolumn{2}{c}{\textbf{Recall}} &
-%     \multicolumn{2}{c}{\textbf{F1 Score}} &
-%     \textbf{Train Time (s)} \\
+    \multirow{2}{*}{\textbf{Model}} &
+    \multicolumn{2}{c}{\textbf{Precision}} &
+    \multicolumn{2}{c}{\textbf{Recall}} &
+    \multicolumn{2}{c}{\textbf{F1 Score}} &
+    \textbf{Train Time (s)} \\
 
-%     \cmidrule(lr){2-3}
-%     \cmidrule(lr){4-5}
-%     \cmidrule(lr){6-7}
+    \cmidrule(lr){2-3}
+    \cmidrule(lr){4-5}
+    \cmidrule(lr){6-7}
 
-%     & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \\
+    & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \\
 
-%     \midrule
-%     AdaBoostClassifier          & 0.6427 & 0.9161 & 0.6298 & 0.9184 & 0.6334 & 0.9170 & 0.0035 \\
-%     GradientBoostingClassifier & 0.7729 & 0.9238 & 0.6555 & 0.9549 & 0.7084 & 0.9391 & 0.0890 \\
-%     CatBoostClassifier         & 0.7828 & 0.9317 & 0.6932 & 0.9549 & 0.7337 & 0.9431 & 0.5812 \\
-%     \bottomrule
+    \midrule
+    AdaBoostClassifier          & 0.6427 & 0.9161 & 0.6298 & 0.9184 & 0.6334 & 0.9170 & 0.0035 \\
+    GradientBoostingClassifier & 0.7729 & 0.9238 & 0.6555 & 0.9549 & 0.7084 & 0.9391 & 0.0890 \\
+    CatBoostClassifier         & 0.7828 & 0.9317 & 0.6932 & 0.9549 & 0.7337 & 0.9431 & 0.5812 \\
+    \bottomrule
     
-%   \end{tabular}
-% \end{table}
+  \end{tabular}
+\end{table}
 
 
-
-As mentioned in Section~\ref{sec:methodology}, different models of four family were deployed. The result is shown in Table~\ref{tab:best_performance}. 
+According to the perfomance, CatBoostClassifier was chosen to the model to be Optimized on Hyperparameters, where \textit{GridSearch} was used. The result is shown in Table \ref{tab:best_performance}.
 
 \begin{table}[!ht]
   \centering
     \caption{f1-score of best models}
     \label{tab:best_performance}
-    \begin{tabular}{c
-      cc
-      cc
-      cc
-      cc}
+    \begin{tabular}{ccccc}
     \toprule
-      \textbf{model}    & \multicolumn{2}{c}{\textbf{Cat Boost}} & \multicolumn{2}{c}{\textbf{KNN}} & \multicolumn{2}{c}{\textbf{Logistic Regression}} & \multicolumn{2}{c}{\textbf{Random Forest}}\\
-      
-      \cmidrule{2-3}
-      \cmidrule{4-5}
-      \cmidrule{6-7}
-      \cmidrule{8-9}
-  
-                        & 0    & 1    & 0    & 1    & 0    & 1    & 0    & 1    \\
-      \midrule
-      \textbf{F1-score} & 0.93 & 0.61 & 0.92 & 0.57 & 0.94 & 0.62 & \colorbox{yellow}{0.96} & \colorbox{yellow}{0.82} \\ 
-      \textbf{Support}  & 270  & 50   & 270  & 50   & 270  & 50   & 262  & 58 \\
+    \textbf{Class} & \textbf{Cat Boost} & \textbf{KNN} & \textbf{Logistic Regression} & \textbf{Support} \\
+    
+    \midrule
+    0 & 0.93 & 0.92 & 0.94 & 270 \\
+    1 & 0.61 & 0.57 & 0.62 & 50 \\
 
     \bottomrule
   \end{tabular}
@@ -391,7 +382,23 @@ As mentioned in Section~\ref{sec:methodology}, different models of four family w
 
 \section{Discussion}
 
+\begin{itemize}
+
+    \item Across all explored methods, tree-based approaches—particularly Random Forest demonstrated the most stable performance for both the classes, likely due to their ability to capture nonlinear feature interactions without extensive preprocessing.
+    \item The evaluation primarily relies on the F1-Score for the minority class (High Demand, Class 1) rather than overall Accuracy. This choice is critical because the dataset is imbalanced (only $\approx 18\%$ High Demand).
+    \item The Naive Benchmark (always predicting 'Low Demand') achieves an inflated Accuracy of $82\%$ but has an F1-Score, Precision and Recall of $0.00$ for the minority class. This demonstrates that any useful model must significantly exceed this baseline in predicting true high-demand events.
+    \item Another significant side is the Business Impact of Errors: like for False Negatives (Low Recall, FN), the model fails to predict high demand when it is needed. This leads to business loss and customer frustration. Again, for False Positives (Low Precision, FP), the model incorrectly predicts high demand which leads to unnecessary operational costs and resource deployment.
+
+    
+\end{itemize}
+
+
 \section{Conclusion}
+
+This project addressed a challenging classification task due to the dataset’s class imbalance and the fact that several features did not have balanced representation across classes, making the data difficult for standard models to learn from. An extensive exploratory analysis was therefore performed to identify meaningful trends and understand when high bike demand occurs. Initial experiments using raw features produced suboptimal results, motivating the need for feature engineering. We introduced cyclic encodings for time-related variables such as hour and month, applied appropriate scaling and encoding, and retrained the models, which significantly improved performance. 
+
+We also investigated feature elimination based on correlation analysis; however, removing most features reduced performance, so only the snow feature—containing a single constant class—was excluded. To ensure fair evaluation under imbalance, Stratified K-Fold cross-validation was used across all models. Finally, we can say that, by doing great prediction in both the classes(96\% F1-score for low demand and 82\% F1-score for high demand), makes Random Forest our best performing model.
+
 
 
 
