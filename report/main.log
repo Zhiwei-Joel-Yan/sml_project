@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.14)  8 DEC 2025 15:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.14)  9 DEC 2025 13:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -564,12 +564,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 123--124
 
  []
 
-<figures/count_plot_category.png, id=59, 722.7pt x 578.16pt>
+<figures/count_plot_category.png, id=63, 722.7pt x 578.16pt>
 File: figures/count_plot_category.png Graphic file (type png)
 <use figures/count_plot_category.png>
 Package pdftex.def Info: figures/count_plot_category.png  used on input line 194.
 (pdftex.def)             Requested size: 377.60951pt x 302.09174pt.
-<figures/num_dist.png, id=61, 1084.05pt x 722.7pt>
+<figures/num_dist.png, id=65, 1084.05pt x 722.7pt>
 File: figures/num_dist.png Graphic file (type png)
 <use figures/num_dist.png>
 Package pdftex.def Info: figures/num_dist.png  used on input line 203.
@@ -580,12 +580,12 @@ Package pdftex.def Info: figures/num_dist.png  used on input line 203.
 
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-<figures/corr_map.png, id=77, 867.24pt x 722.7pt>
+<figures/corr_map.png, id=82, 867.24pt x 722.7pt>
 File: figures/corr_map.png Graphic file (type png)
 <use figures/corr_map.png>
 Package pdftex.def Info: figures/corr_map.png  used on input line 215.
 (pdftex.def)             Requested size: 357.73405pt x 298.11742pt.
-<figures/box_and_hist_features.png, id=79, 1156.32pt x 867.24pt>
+<figures/box_and_hist_features.png, id=84, 1156.32pt x 867.24pt>
 File: figures/box_and_hist_features.png Graphic file (type png)
 <use figures/box_and_hist_features.png>
 Package pdftex.def Info: figures/box_and_hist_features.png  used on input line 227.
@@ -610,18 +610,23 @@ Overfull \vbox (2.21632pt too high) has occurred while \output is active []
 
 
 [4 <./figures/corr_map.png> <./figures/box_and_hist_features.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 242--243
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
 
  []
 
 
-Overfull \hbox (33.70287pt too wide) in paragraph at lines 292--320
- [][] 
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
+
  []
 
-(./main.bbl
 
-[5])
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+
+ []
+
+
+
+[5] (./main.bbl)
 
 [6] (./main.aux)
  ***********
@@ -629,21 +634,21 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D6F9F7083208996E64C0E9006DFF1E01;1464.
+(rerunfilecheck)             Checksum: 32A1F2795E82B75A6128C6A89EEF5B58;1703.
  ) 
 Here is how much of TeX's memory you used:
- 15321 strings out of 473190
- 237807 string characters out of 5715800
- 698964 words of memory out of 5000000
- 38197 multiletter control sequences out of 15000+600000
+ 15325 strings out of 473190
+ 237915 string characters out of 5715800
+ 698947 words of memory out of 5000000
+ 38200 multiletter control sequences out of 15000+600000
  594716 words of font info for 142 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,10n,79p,1041b,565s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,10n,79p,1041b,551s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 885934 bytes).
+Output written on main.pdf (6 pages, 892072 bytes).
 PDF statistics:
- 199 PDF objects out of 1000 (max. 8388607)
- 157 compressed objects within 2 object streams
- 37 named destinations out of 1000 (max. 500000)
- 42613 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 203 PDF objects out of 1000 (max. 8388607)
+ 161 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 42621 words of extra memory for PDF output out of 42996 (max. 10000000)
 
