@@ -7,7 +7,7 @@
 
 
 % ready for submission
-% \usepackage{neurips_2022} % neurips_2022.sty is missing; upload it to your project
+\usepackage{neurips_2022} % neurips_2022.sty is missing; upload it to your project
 
 % to compile a preprint version, e.g., for submission to arXiv, add add the
 % [preprint] option:
@@ -34,9 +34,11 @@
 \usepackage{multirow}
 \usepackage{listings}
 \usepackage{xcolor}         % colors
-
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
 
 % define colors
+
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -110,8 +112,9 @@ showtabs=false, tabsize=2,
 
 
 \begin{abstract}
-  To fulfill the demand of public bike that more fossil based transportation cans be replaced by bike and contribute to alleviating climate change, the city of Washington D.C. has recorded the observations high bike demand along with temporal and meteorological features. With this data, this project study is dedicated to help the city to predict the necessity of increasing number of bikes at certain hours. To achieve this goal, methods including Logistic Regression, KNN, bagging and boosting are deployed to predict the target label with given feature.  
-  Number of group members: 3.
+To fulfill the demand of public bike that more fossil based transportation cans be replaced by bike and contribute to alleviating climate change, the city of Washington D.C. has recorded the observations high bike demand along with temporal and meteorological features. With this data, this project study is dedicated to help the city to predict the necessity of increasing number of bikes at certain hours. To achieve this goal, methods including Logistic Regression, KNN, bagging and boosting are deployed to predict the target label with given feature.
+  
+\textit{Number of group members: 3.}
 \end{abstract}
 
 
@@ -178,11 +181,12 @@ Out of that the ways to treat categorical features are different from numerical 
   holiday         &  month \\
   weekday         &  temp \\
   summertime      & dew \\
-  snow            & humidity \\
-  increase\_stock & precip \\
-  hour\_of\_day   & snow\_depth \\
-  day\_of\_week   & windspeed \\
+  increase\_stock & humidity \\
+  hour\_of\_day   & precip \\
+  day\_of\_week   & snow\_depth \\
+                  & windspeed \\
                   & cloudcover \\
+                  & snow \\
   \bottomrule
   \end{tabular}
 \end{table}
@@ -235,7 +239,7 @@ Finally, with all analysis and figures above, the Question \ref{question:ii} can
 It is seen that the label "1" ("high\_bike\_demand") is concerntrated around daytime, growth starts from early morning, drops till late evening after reaching its peak at 15:00 to 16:00. Weekday has more "high\_bike\_demand" than weekends. \\ 
 Temperature also has impact on bike demand, more bike are needed when temperture is in a comfortable region, 20 ~ 30 degC in data. This can also interprets the trend in the summertime, temperature is higher in summer, similarily for dew point.
 
-\section{Methodology}
+\section{Methodology}\label{sec:methodology}
 \subsection{Machine learning models}
 \subsubsection{Boosting}
 Boosting is an emsenble method which is built on the idea that even a week model can capture some patterns between target variables and given features. Starting from a base model, optmizing it based on the returned error can produce a new model which would become the base for next model. By ensembling the predictions from these models, the intention of boosting is to reduce bias\citep{Lindholm2022sml}.\\
@@ -320,63 +324,84 @@ Considering that label are imbalanced in the target variable, metrics like accur
 
 
 \section{Results}
-\subsection{Boosting}
-Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table \ref{tab:models_performance}
+% \subsection{Boosting}
+% Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table \ref{tab:models_performance}
 
+
+% \begin{table}[!ht]
+%   \centering
+%   \caption{Boosting models performance}
+%   \label{tab:models_performance}
+%   \begin{tabular}{
+%     l
+%     cc
+%     cc
+%     cc
+%     c
+%   }
+%     \toprule
+
+%     \multirow{2}{*}{\textbf{Model}} &
+%     \multicolumn{2}{c}{\textbf{Precision}} &
+%     \multicolumn{2}{c}{\textbf{Recall}} &
+%     \multicolumn{2}{c}{\textbf{F1 Score}} &
+%     \textbf{Train Time (s)} \\
+
+%     \cmidrule(lr){2-3}
+%     \cmidrule(lr){4-5}
+%     \cmidrule(lr){6-7}
+
+%     & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \\
+
+%     \midrule
+%     AdaBoostClassifier          & 0.6427 & 0.9161 & 0.6298 & 0.9184 & 0.6334 & 0.9170 & 0.0035 \\
+%     GradientBoostingClassifier & 0.7729 & 0.9238 & 0.6555 & 0.9549 & 0.7084 & 0.9391 & 0.0890 \\
+%     CatBoostClassifier         & 0.7828 & 0.9317 & 0.6932 & 0.9549 & 0.7337 & 0.9431 & 0.5812 \\
+%     \bottomrule
+    
+%   \end{tabular}
+% \end{table}
+
+
+As mentioned in Seciont~\ref{sec:methodology}, different models of four family were deployed. The result is shown in Table \ref{tab:best_performance}.
 
 \begin{table}[!ht]
-  \centering
-  \caption{Boosting models performance}
-  \label{tab:models_performance}
-  \begin{tabular}{
-    l
-    cc
-    cc
-    cc
-    c
-  }
-    \toprule
+\centering
+\caption{F1-score of best models}
+\label{tab:best_performance}
 
-    \multirow{2}{*}{\textbf{Model}} &
-    \multicolumn{2}{c}{\textbf{Precision}} &
-    \multicolumn{2}{c}{\textbf{Recall}} &
-    \multicolumn{2}{c}{\textbf{F1 Score}} &
-    \textbf{Train Time (s)} \\
+\begin{tabular}{l c c c c c c c c}
+\toprule
+\textbf{Model} 
+& \multicolumn{2}{c}{\textbf{CatBoost}} 
+& \multicolumn{2}{c}{\textbf{KNN}} 
+& \multicolumn{2}{c}{\textbf{Logistic Regression}} 
+& \multicolumn{2}{c}{\textbf{Random Forest}} \\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+\cmidrule(lr){8-9}
 
-    \cmidrule(lr){2-3}
-    \cmidrule(lr){4-5}
-    \cmidrule(lr){6-7}
+& \textbf{0} & \textbf{1}
+& \textbf{0} & \textbf{1}
+& \textbf{0} & \textbf{1}
+& \textbf{0} & \textbf{1} \\
+\midrule
 
-    & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \\
+\textbf{F1-score}
+& 0.93 & 0.61
+& 0.92 & 0.57
+& 0.94 & 0.62
+& \cellcolor{yellow!30}\textbf{0.96} & \cellcolor{yellow!30}\textbf{0.82} \\
 
-    \midrule
-    AdaBoostClassifier          & 0.6427 & 0.9161 & 0.6298 & 0.9184 & 0.6334 & 0.9170 & 0.0035 \\
-    GradientBoostingClassifier & 0.7729 & 0.9238 & 0.6555 & 0.9549 & 0.7084 & 0.9391 & 0.0890 \\
-    CatBoostClassifier         & 0.7828 & 0.9317 & 0.6932 & 0.9549 & 0.7337 & 0.9431 & 0.5812 \\
-    \bottomrule
-    
-  \end{tabular}
+\textbf{Support}
+& 270 & 50
+& 270 & 50
+& 270 & 50
+& 262 & 58 \\
+\bottomrule
+\end{tabular}
 \end{table}
-
-
-According to the perfomance, CatBoostClassifier was chosen to the model to be Optimized on Hyperparameters, where \textit{GridSearch} was used. The result is shown in Table \ref{tab:best_performance}.
-
-\begin{table}[!ht]
-  \centering
-    \caption{f1-score of best models}
-    \label{tab:best_performance}
-    \begin{tabular}{ccccc}
-    \toprule
-    \textbf{Class} & \textbf{Cat Boost} & \textbf{KNN} & \textbf{Logistic Regression} & \textbf{Support} \\
-    
-    \midrule
-    0 & 0.93 & 0.92 & 0.94 & 270 \\
-    1 & 0.61 & 0.57 & 0.62 & 50 \\
-
-    \bottomrule
-  \end{tabular}
-\end{table}
-
 
 
 
