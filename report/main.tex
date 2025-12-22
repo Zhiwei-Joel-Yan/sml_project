@@ -302,6 +302,34 @@ Here, \(x_1, x_2, \ldots, x_n\) are the input feature values, \(w_0, w_1, \ldots
 % Here, \(\mathbb{P}\) represents the predicted probability, \(\sigma(z)\) is the sigmoid function which takes the linear combination output \(z\), and \(e^{-z}\) adjusts the curve so that the probability increases as the output \(z\) increases.  
 
 % In the logistic function, classification is made by setting a decision boundary, usually 0.5. If \(\mathbb{P}\) is greater than 0.5, the instance is classified as 1; otherwise, it is classified as 0.
+\subsubsection{Linear Discriminant Analysis (LDA)}
+
+Linear Discriminant Analysis (LDA) is a generative classification model that assumes the feature vectors of each class follow a multivariate Gaussian distribution with class-specific mean vectors but a \emph{shared} covariance matrix across classes. Compared to QDA, this assumption significantly reduces model complexity and variance.
+
+Formally, LDA models the class-conditional densities as:
+\[
+p(\mathbf{x} \mid y=k) = \mathcal{N}(\boldsymbol{\mu}_k, \boldsymbol{\Sigma}), \quad k \in \{0,1\}
+\]
+
+Using Bayes' rule and shared covariance, the resulting decision boundary between classes is linear. This makes LDA more robust than QDA in situations with limited data or class imbalance, at the cost of reduced flexibility.
+
+Given the moderate dimensionality of the dataset and the imbalance between low- and high-demand classes, LDA provides a useful trade-off between bias and variance, and serves as a strong probabilistic baseline.
+
+
+\subsubsection{Quadratic Discriminant Analysis (QDA)}
+
+Quadratic Discriminant Analysis (QDA) is a generative classification model that assumes each class follows a multivariate Gaussian distribution with its own mean vector and covariance matrix. Unlike Linear Discriminant Analysis (LDA), QDA does not assume a shared covariance structure across classes, allowing it to model more complex, non-linear decision boundaries.
+
+Formally, for each class $k \in \{0,1\}$, the class-conditional density is modeled as:
+\[
+p(\mathbf{x} \mid y=k) = \mathcal{N}(\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
+\]
+
+Using Bayes' rule, the posterior probability is computed and classification is performed by assigning the class with the highest posterior probability. The resulting decision boundary is quadratic in the feature space.
+
+While QDA can capture complex relationships between features, it is sensitive to estimation noise, especially in high-dimensional settings or when the number of samples per class is limited. Given the imbalance in the dataset, QDA may favor recall over precision by predicting the minority class more aggressively.
+
+\subsubsection{K-Nearest Neighbours}
 \subsubsection{K-Nearest Neighbors}
 
 K-Nearest Neighbors (KNN) is a supervised machine learning algorithm used for both classification and regression problems. It works by finding the \(K\) nearest points to a given data point and making predictions based on the majority class for classification or the average value for regression.
@@ -336,40 +364,42 @@ Considering that label are imbalanced in the target variable, metrics like accur
 As for tuning the hyperparameter, \textbf{Grid search} technique with given parameters grid was implemented to find the hyperparameters to get best performance out of a model. 
 
 \section{Results}
-% \subsection{Boosting}
-% Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table \ref{tab:models_performance}
+\subsection{Boosting}
+Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table \ref{tab:models_performance}
 
 
-% \begin{table}[!ht]
-%   \centering
-%   \caption{Boosting models performance}
-%   \label{tab:models_performance}
-%   \begin{tabular}{
-%     l
-%     cc
-%     cc
-%     cc
-%     c
-%   }
-%     \toprule
+\begin{table}[!ht]
+  \centering
+  \caption{Boosting models performance}
+  \label{tab:models_performance}
+  \begin{tabular}{
+    l
+    cc
+    cc
+    cc
+    c
+  }
+    \toprule
 
-%     \multirow{2}{*}{\textbf{Model}} &
-%     \multicolumn{2}{c}{\textbf{Precision}} &
-%     \multicolumn{2}{c}{\textbf{Recall}} &
-%     \multicolumn{2}{c}{\textbf{F1 Score}} &
-%     \textbf{Train Time (s)} \\
+    \multirow{2}{*}{\textbf{Model}} &
+    \multicolumn{2}{c}{\textbf{Precision}} &
+    \multicolumn{2}{c}{\textbf{Recall}} &
+    \multicolumn{2}{c}{\textbf{F1 Score}} &
+    \textbf{Train Time (s)} \\
 
-%     \cmidrule(lr){2-3}
-%     \cmidrule(lr){4-5}
-%     \cmidrule(lr){6-7}
+    \cmidrule(lr){2-3}
+    \cmidrule(lr){4-5}
+    \cmidrule(lr){6-7}
 
-%     & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \\
+    & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \\
 
-%     \midrule
-%     AdaBoostClassifier          & 0.6427 & 0.9161 & 0.6298 & 0.9184 & 0.6334 & 0.9170 & 0.0035 \\
-%     GradientBoostingClassifier & 0.7729 & 0.9238 & 0.6555 & 0.9549 & 0.7084 & 0.9391 & 0.0890 \\
-%     CatBoostClassifier         & 0.7828 & 0.9317 & 0.6932 & 0.9549 & 0.7337 & 0.9431 & 0.5812 \\
-%     \bottomrule
+    \midrule
+    AdaBoostClassifier          & 0.6427 & 0.9161 & 0.6298 & 0.9184 & 0.6334 & 0.9170 & 0.0035 \\
+    GradientBoostingClassifier & 0.7729 & 0.9238 & 0.6555 & 0.9549 & 0.7084 & 0.9391 & 0.0890 \\
+    CatBoostClassifier         & 0.7828 & 0.9317 & 0.6932 & 0.9549 & 0.7337 & 0.9431 & 0.5812 \\
+    LDA                         & 0.6750 & 0.9120 & 0.6040 & 0.9280 & 0.6330 & 0.9200 & 0.0130 \\
+    QDA                         & 0.3370 & 0.9130 & 0.9510 & 0.3560 & 0.5000 & 0.5120 & 0.0150 \\
+    \bottomrule
     
 %   \end{tabular}
 % \end{table}
