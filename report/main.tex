@@ -11,7 +11,7 @@
 
 % to compile a preprint version, e.g., for submission to arXiv, add add the
 % [preprint] option:
-    \usepackage[preprint]{neurips_2022}
+    % \usepackage[preprint]{neurips_2022}
 
 
 % to compile a camera-ready version, add the [final] option, e.g.:
@@ -289,7 +289,7 @@ Logistic Regression first calculates the linear combination of the input feature
 z = w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_n x_n
 \]
 
-Here, \(x_1, x_2, \ldots, x_n\) are the input feature values, \(w_0, w_1, \ldots, w_n\) are the model's learned weights, and \(z\) is the model's internal score. This value is then passed through the sigmoid function to convert it into a probability between 0 and 1.\\
+Here, \(x_1, x_2, \ldots, x_n\) are the input feature values, \(w_0, w_1, \ldots, w_n\) are the model's learned weights, and \(z\) is the model's internal score. This value is then passed through the sigmoid function to convert it into a probability between 0 and 1. In our problem we have used all of our feature variables except snow as it does not provide meaningful numerical information beyond zero. We also experimented with feature elimination; however, none of the reduced feature sets overshadowed the accuracy achieved using the full feature set. We also tuned hyperparameters for better results using GridsearchCV, RandomsearchCV and OptimizeSeachCV. \\
 
 % \textbf{Sigmoid Activation Function}
 
@@ -316,7 +316,7 @@ d(\mathbf{x}_1, \mathbf{x}_2) = \sqrt{(x_{11} - x_{21})^2 + (x_{12} - x_{22})^2 
 
 For a new data point \(\mathbf{X}_{\text{new}}\), the algorithm calculates its distance from all instances in the dataset and selects the \(K\) instances with the smallest distances. The final predicted class is determined based on the majority vote among these \(K\) nearest neighbors.  
 
-It is important to note that if \(K\) is too small, the model becomes overfitted. If \(K\) is too large, the model becomes underfitted. In our project, we selected the optimal \(K\) value using the \texttt{GridSearchCV} function.
+It is important to note that if \(K\) is too small, the model becomes overfitted. If \(K\) is too large, the model becomes underfitted. In our project, we selected the optimal \(K\) value using the \texttt{GridSearchCV}. We used all feature variables to train the model, and it performed better than models trained with eliminated features
 
 \subsubsection{Tree-based methods}
 Tree-based methods rely on recursively splitting the feature space into smaller, more homogeneous regions using decision rules. At each internal node, the data is split based on a single feature until a stopping criteria is met and a threshold value chosen to maximize the homogeneity of the resulting subsets.
