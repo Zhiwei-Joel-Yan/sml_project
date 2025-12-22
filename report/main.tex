@@ -2,7 +2,7 @@
 
 
 % if you need to pass options to natbib, use, e.g.:
-    \PassOptionsToPackage{numbers, compress}{natbib}
+\PassOptionsToPackage{numbers, compress}{natbib}
 % before loading neurips_2022
 
 
@@ -11,7 +11,7 @@
 
 % to compile a preprint version, e.g., for submission to arXiv, add add the
 % [preprint] option:
-    % \usepackage[preprint]{neurips_2022}
+\usepackage[preprint]{neurips_2022}
 
 
 % to compile a camera-ready version, add the [final] option, e.g.:
@@ -79,10 +79,12 @@ showtabs=false, tabsize=2,
 
 
 \author{
-  Zhiwei Y. \thanks{Deploying boosting method to given data and writing \textit{Abstrect, Introduction, and Exploratory data analysis}}
-  \textt{zhiwei.yan@angstrom.uu.se}
+  Zhiwei Yan 
+  \texttt{zhiwei.yan@angstrom.uu.se}
   % examples of more authors
-  % \And
+  \And
+  Hamza Yozdemir
+  \texttt{hamza.yozdemir.1286@student.uu.se}
   % Coauthor \\
   % Affiliation \\
   % Address \\
@@ -108,18 +110,18 @@ showtabs=false, tabsize=2,
 \begin{document}
 
 
+
 \maketitle
 
-
 \begin{abstract}
-To fulfill the demand of public bike that more fossil based transportation cans be replaced by bike and contribute to alleviating climate change, the city of Washington D.C. has recorded the observations high bike demand along with temporal and meteorological features. With this data, this project study is dedicated to help the city to predict the necessity of increasing number of bikes at certain hours. To achieve this goal, methods including Logistic Regression, KNN, LDA, QDA, bagging,and boosting are deployed to predict the target label with given feature.
+To fulfill the demand of public bike that more fossil based transportation cans be replaced by bike and contribute to alleviating climate change, the city of Washington D.C. has recorded the observations high bike demand along with temporal and meteorological features. With this data, this project study is dedicated to help the city to predict the necessity of increasing number of bikes at certain hours. To achieve this goal, methods including Logistic Regression, KNN, LDA, QDA, bagging,and boosting are deployed to predict the target label with given feature. The result indicates that the \textit{Random Forest Classifier} in bagging method performs the best with given data.
   
 \textit{Number of group members: 4.}
 \end{abstract}
 
 
 \section{Study case and Data} 
-To further understand and practice the knowledge we have obtained from lectures. A case of classification problem was given so that we can apply different methods on the data and understand the characteristics and behaviors of these methods.
+% To further understand and practice the knowledge we have obtained from lectures. A case of classification problem was given so that we can apply different methods on the data and understand the characteristics and behaviors of these methods.
 
 \subsection{Case and data description}
 To help the city of Washington, D.C. understand whether increasing the number of public bikes is necessary at some certain hour, a machine learning model is expected to predict the public bike demand for given temporal and meteorological features. \\
@@ -161,14 +163,14 @@ A data set contains 1600 random observations is provided for the model training.
 
 
 \subsection{Exploratory data analysis}
-Expolratory data analysis has been conducted to gain the knowledge of relations among features in the dataset. Also, following questions in the project introduction are answered in this section. 
+Exploratory data analysis has been conducted to gain the knowledge of relations among features in the dataset. Also, following questions in the project introduction are answered in this section. 
 
 \begin{enumerate}
   \item\label{question:i} Which are the numerical features and which are the categorical features? 
   \item\label{question:ii} Is there any trend to need increase in the availability of bicycles?
 \end{enumerate}
 
-Out of that the ways to treat categorical features are different from numerical features, the features are sorted into two groups, numerical and categorical. The kind of them can be identified according to Table \ref{tab:feature_description}. The two groups are shown in Table \ref{tab:cat_num_list}, which also answers Question \ref{question:i}. It is important to note that the temporal features can be also treated as numeric features. 
+Out of that the ways to treat categorical features are different from numerical features, the features are sorted into two groups, numerical and categorical. The kind of them can be identified according to Table \ref{tab:feature_description}. The two groups are shown in Table \ref{tab:cat_num_list}, which also answers Question \ref{question:i}. Also, the temporal features can be treated as numeric features in some cases.
 
 \begin{table}[!ht]
 \caption{Categorical and numerical features.}
@@ -205,22 +207,23 @@ For categorical features, first step was to see the label balance. The result is
     \begin{center}
       \includegraphics[width=0.95\textwidth]{report/figures/num_dist.png}
     \end{center}
-    \caption{histgrams of numerical features}
+    \caption{histograms of numerical features}
     \label{fig:num_dist}
   \end{small}
 \end{figure}
 
-To understand the correlation among features, mostly between targets and other features, correlation analysis has been done ploting corrolation maps, shown in Figure \ref{fig:correlation}
+To understand the correlation among features, mostly between targets and other features, correlation analysis has been done.
+% ploting corrolation maps, shown in Figure \ref{fig:correlation}
 
-\begin{figure}[!ht]
-  \begin{small}
-    \begin{center}
-      \includegraphics[width=0.9\textwidth]{report/figures/corr_map.png}
-    \end{center}
-    \caption{Corrolation among features}
-    \label{fig:correlation}
-  \end{small}
-\end{figure}
+% \begin{figure}[!ht]
+%   \begin{small}
+%     \begin{center}
+%       \includegraphics[width=0.9\textwidth]{report/figures/corr_map.png}
+%     \end{center}
+%     \caption{Corrolation among features}
+%     \label{fig:correlation}
+%   \end{small}
+% \end{figure}
 
 Dropping out the smaller correlated features ($correlation \geq 0.1$), the left ones are: "temp", "humidity", "hour\_of\_day", "summertime", "dew", "weekday", and "visibility". To more intuitively see if any features can help separate the target label. Figure \ref{fig:box_and_dist} was plotted. 
 
@@ -244,7 +247,7 @@ Temperature also has impact on bike demand, more bike are needed when temperatur
 \subsection{Data splitting}
 The given data is splitting into 0.8 of all data as train set and the rest as test set. The process was done with \textit{sklearn.model\_selection.train\_test\_splitting} function. 
 
-\subsection{Machine learning models and Traning}
+\subsection{Machine learning models and Training}
 \subsubsection{Boosting}
 Boosting is an ensemble method which is built on the idea that even a week model can capture some patterns between target variables and given features. Starting from a base model, optmizing it based on the returned error can produce a new model which would become the base for next model. By ensembling the predictions from these models, the intention of boosting is to reduce bias\citep{Lindholm2022sml}.\\
 
@@ -289,7 +292,7 @@ Logistic Regression first calculates the linear combination of the input feature
 z = w_0 + w_1 x_1 + w_2 x_2 + \cdots + w_n x_n
 \]
 
-Here, \(x_1, x_2, \ldots, x_n\) are the input feature values, \(w_0, w_1, \ldots, w_n\) are the model's learned weights, and \(z\) is the model's internal score. This value is then passed through the sigmoid function to convert it into a probability between 0 and 1. In our problem we have used all of our feature variables except snow as it does not provide meaningful numerical information beyond zero. We also experimented with feature elimination; however, none of the reduced feature sets overshadowed the accuracy achieved using the full feature set. We also tuned hyperparameters for better results using GridsearchCV, RandomsearchCV and OptimizeSeachCV. \\
+Here, \(x_1, x_2, \ldots, x_n\) are the input feature values, \(w_0, w_1, \ldots, w_n\) are the model's learned weights, and \(z\) is the model's internal score. This value is then passed through the sigmoid function to convert it into a probability between 0 and 1. In our problem we have used all of our feature variables except snow as it does not provide meaningful numerical information beyond zero. We also experimented with feature elimination; however, none of the reduced feature sets overshadowed the accuracy achieved using the full feature set. \\
 
 % \textbf{Sigmoid Activation Function}
 
@@ -329,7 +332,6 @@ Using Bayes' rule, the posterior probability is computed and classification is p
 
 While QDA can capture complex relationships between features, it is sensitive to estimation noise, especially in high-dimensional settings or when the number of samples per class is limited. Given the imbalance in the dataset, QDA may favor recall over precision by predicting the minority class more aggressively.
 
-\subsubsection{K-Nearest Neighbours}
 \subsubsection{K-Nearest Neighbors}
 
 K-Nearest Neighbors (KNN) is a supervised machine learning algorithm used for both classification and regression problems. It works by finding the \(K\) nearest points to a given data point and making predictions based on the majority class for classification or the average value for regression.
@@ -347,10 +349,43 @@ For a new data point \(\mathbf{X}_{\text{new}}\), the algorithm calculates its d
 It is important to note that if \(K\) is too small, the model becomes overfitted. If \(K\) is too large, the model becomes underfitted. In our project, we selected the optimal \(K\) value using the \texttt{GridSearchCV}. We used all feature variables to train the model, and it performed better than models trained with eliminated features
 
 \subsubsection{Tree-based methods}
-Tree-based methods rely on recursively splitting the feature space into smaller, more homogeneous regions using decision rules. At each internal node, the data is split based on a single feature until a stopping criteria is met and a threshold value chosen to maximize the homogeneity of the resulting subsets.
+Tree-based methods rely on recursively splitting the feature space into smaller, more homogeneous regions using decision rules. At each internal node, the data is split based on a single feature until a stopping criteria is met and a threshold value chosen to maximize the homogeneity of the resulting subsets. 
 
 
 In this study, three main tree-based approaches were explored: Decision Tree, Random Forest, and Bagging Classifier. A Decision Tree is prone to overfitting due to high variance. In contrast, the Bagging Classifier and Random Forest Classifier reduce this variance by training many independent trees on bootstrapped samples of the dataset and averaging their predictions. The Random Forest further extends to random feature selection at each split, reducing correlation among individual trees and typically improving generalization performance.
+
+\begin{equation}
+\text{Decision Tree: }\quad
+\hat{y}(\mathbf{x})
+=
+\arg\max_{k \in \mathcal{Y}}
+\hat{P}(y = k \mid \mathbf{x} \in R_m),
+\quad \text{where } \mathbf{x} \in R_m
+\end{equation}
+
+\begin{equation}
+\text{Bagging Classifier: } \quad
+\hat{y}_{\text{bag}}(\mathbf{x})
+=
+\arg\max_{k \in \mathcal{Y}}
+\sum_{b=1}^{B}
+\mathbb{I}\!\left(
+\hat{f}^{(b)}(\mathbf{x}) = k
+\right)
+\end{equation}
+
+\begin{equation}
+\text{Random Forest Classifier: }
+\hat{y}_{\text{RF}}(\mathbf{x})
+=
+\arg\max_{k \in \mathcal{Y}}
+\sum_{b=1}^{B}
+\mathbb{I}\!\left(
+\hat{f}_{\text{RF}}^{(b)}(\mathbf{x}) = k
+\right)
+\end{equation}
+
+
 
 \subsection{Validation and Hyperparameter Optimization}
 Stratified K-fold method with 5 subset was used for cross-validation to the deployed models.
@@ -364,42 +399,42 @@ Considering that label are imbalanced in the target variable, metrics like accur
 As for tuning the hyperparameter, \textbf{Grid search} technique with given parameters grid was implemented to find the hyperparameters to get best performance out of a model. 
 
 \section{Results}
-\subsection{Boosting}
-Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table \ref{tab:models_performance}
+% \subsection{Boosting}
+% Three boosting models were apply in this study, AdaBoostingClassifier and GradientBoostingClassifier from \textit{Scikit-learn},and CatBoostClassifier. Their perfomance is shown in Table \ref{tab:models_performance}
 
 
-\begin{table}[!ht]
-  \centering
-  \caption{Boosting models performance}
-  \label{tab:models_performance}
-  \begin{tabular}{
-    l
-    cc
-    cc
-    cc
-    c
-  }
-    \toprule
+% \begin{table}[!ht]
+%   \centering
+%   \caption{Boosting models performance}
+%   \label{tab:models_performance}
+%   \begin{tabular}{
+%     l
+%     cc
+%     cc
+%     cc
+%     c
+%   }
+%     \toprule
 
-    \multirow{2}{*}{\textbf{Model}} &
-    \multicolumn{2}{c}{\textbf{Precision}} &
-    \multicolumn{2}{c}{\textbf{Recall}} &
-    \multicolumn{2}{c}{\textbf{F1 Score}} &
-    \textbf{Train Time (s)} \\
+%     \multirow{2}{*}{\textbf{Model}} &
+%     \multicolumn{2}{c}{\textbf{Precision}} &
+%     \multicolumn{2}{c}{\textbf{Recall}} &
+%     \multicolumn{2}{c}{\textbf{F1 Score}} &
+%     \textbf{Train Time (s)} \\
 
-    \cmidrule(lr){2-3}
-    \cmidrule(lr){4-5}
-    \cmidrule(lr){6-7}
+%     \cmidrule(lr){2-3}
+%     \cmidrule(lr){4-5}
+%     \cmidrule(lr){6-7}
 
-    & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \\
+%     & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \textbf{1} & \textbf{0} & \\
 
-    \midrule
-    AdaBoostClassifier          & 0.6427 & 0.9161 & 0.6298 & 0.9184 & 0.6334 & 0.9170 & 0.0035 \\
-    GradientBoostingClassifier & 0.7729 & 0.9238 & 0.6555 & 0.9549 & 0.7084 & 0.9391 & 0.0890 \\
-    CatBoostClassifier         & 0.7828 & 0.9317 & 0.6932 & 0.9549 & 0.7337 & 0.9431 & 0.5812 \\
-    LDA                         & 0.6750 & 0.9120 & 0.6040 & 0.9280 & 0.6330 & 0.9200 & 0.0130 \\
-    QDA                         & 0.3370 & 0.9130 & 0.9510 & 0.3560 & 0.5000 & 0.5120 & 0.0150 \\
-    \bottomrule
+%     \midrule
+%     AdaBoostClassifier          & 0.6427 & 0.9161 & 0.6298 & 0.9184 & 0.6334 & 0.9170 & 0.0035 \\
+%     GradientBoostingClassifier & 0.7729 & 0.9238 & 0.6555 & 0.9549 & 0.7084 & 0.9391 & 0.0890 \\
+%     CatBoostClassifier         & 0.7828 & 0.9317 & 0.6932 & 0.9549 & 0.7337 & 0.9431 & 0.5812 \\
+%     LDA                         & 0.6750 & 0.9120 & 0.6040 & 0.9280 & 0.6330 & 0.9200 & 0.0130 \\
+%     QDA                         & 0.3370 & 0.9130 & 0.9510 & 0.3560 & 0.5000 & 0.5120 & 0.0150 \\
+%     \bottomrule
     
 %   \end{tabular}
 % \end{table}
@@ -409,21 +444,25 @@ As mentioned in Seciont~\ref{sec:methodology}, different models of four family w
 
 \begin{table}[!ht]
 \centering
-\caption{F1-score of best models}
-\label{tab:best_performance}
-
-\begin{tabular}{l c c c c c c c c}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l c c c c c c c c c c c c}
 \toprule
 \textbf{Model} 
 & \multicolumn{2}{c}{\textbf{CatBoost}} 
 & \multicolumn{2}{c}{\textbf{KNN}} 
 & \multicolumn{2}{c}{\textbf{Logistic Regression}} 
-& \multicolumn{2}{c}{\textbf{Random Forest}} \\
+& \multicolumn{2}{c}{\textbf{Random Forest}}
+& \multicolumn{2}{c}{\textbf{LDA}}
+& \multicolumn{2}{c}{\textbf{QDA}} \\
 \cmidrule(lr){2-3}
 \cmidrule(lr){4-5}
 \cmidrule(lr){6-7}
 \cmidrule(lr){8-9}
+\cmidrule(lr){10-11}
+\cmidrule(lr){12-13}
 
+& \textbf{0} & \textbf{1}
+& \textbf{0} & \textbf{1}
 & \textbf{0} & \textbf{1}
 & \textbf{0} & \textbf{1}
 & \textbf{0} & \textbf{1}
@@ -434,15 +473,22 @@ As mentioned in Seciont~\ref{sec:methodology}, different models of four family w
 & 0.93 & 0.61
 & 0.92 & 0.57
 & 0.94 & 0.62
-& \cellcolor{yellow!30}\textbf{0.96} & \cellcolor{yellow!30}\textbf{0.82} \\
+& \cellcolor{yellow!30}\textbf{0.96} & \cellcolor{yellow!30}\textbf{0.82}
+& 0.88 & 0.63
+& 0.74 & 0.50 \\
 
 \textbf{Support}
 & 270 & 50
 & 270 & 50
 & 270 & 50
-& 262 & 58 \\
+& 262 & 58
+& 270 & 50
+& 270 & 50 \\
 \bottomrule
 \end{tabular}
+}
+\caption{F1-score comparison across models}
+\label{tab:best_performance}
 \end{table}
 
 
