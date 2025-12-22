@@ -1,2 +1,3 @@
 Zhiwei Yan deployed boosting model, contributed to writing in sections of abtract, introduction, exploratory data analysis, and methodology. 
-MD Nazmus Sadat Samin deployed Logistic Regression, KNN and helped to writing in methodology section of corresponding models(logistic & KNN) and their mathematical description. 
+MD Nazmus Sadat Samin deployed Logistic Regression, KNN and helped to writing in methodology section of corresponding models(logistic & KNN) and their mathematical description.
+Nusrat Khan deployed Tree based models and also helped in methodology section of model description and mathematical explanation. 
