@@ -7,11 +7,11 @@
 
 
 % ready for submission
-\usepackage{neurips_2022} % neurips_2022.sty is missing; upload it to your project
+% \usepackage{neurips_2022} % neurips_2022.sty is missing; upload it to your project
 
 % to compile a preprint version, e.g., for submission to arXiv, add add the
 % [preprint] option:
-    % \usepackage[preprint]{neurips_2022}
+    \usepackage[preprint]{neurips_2022}
 
 
 % to compile a camera-ready version, add the [final] option, e.g.:
@@ -114,17 +114,17 @@ showtabs=false, tabsize=2,
 \begin{abstract}
 To fulfill the demand of public bike that more fossil based transportation cans be replaced by bike and contribute to alleviating climate change, the city of Washington D.C. has recorded the observations high bike demand along with temporal and meteorological features. With this data, this project study is dedicated to help the city to predict the necessity of increasing number of bikes at certain hours. To achieve this goal, methods including Logistic Regression, KNN, bagging and boosting are deployed to predict the target label with given feature.
   
-\textit{Number of group members: 3.}
+\textit{Number of group members: 4.}
 \end{abstract}
 
 
 \section{Study case and Data} 
-To further understand and practice the knowledge we have obtained from lectures. A case of classification problem was given that we can apply different methods on the data and understand the charactoristics and behaviours of these methods.
+To further understand and practice the knowledge we have obtained from lectures. A case of classification problem was given so that we can apply different methods on the data and understand the characteristics and behaviors of these methods.
 
 \subsection{Case and data description}
-To help the city of Washington, D.C. understand whether increasing the number of public bikes is neccessary at some certain hour, a machine learning model is expected to predict the public bike demand for given temporal and meteorological features. \\
+To help the city of Washington, D.C. understand whether increasing the number of public bikes is necessary at some certain hour, a machine learning model is expected to predict the public bike demand for given temporal and meteorological features. \\
 
-A data set contains 1600 random obeservations is provided for the model training. The target variable is binary for "high" or "low" demand for increasing bikes' number. The description of the features are given in Table \ref{tab:feature_description}
+A data set contains 1600 random observations is provided for the model training. The target variable is binary for "high" or "low" demand for increasing bikes' number. The description of the features are given in Table \ref{tab:feature_description}
 
 \begin{table}[!ht]
   \caption{Labels and features in the data set \citep{smlproject2024}}
@@ -165,10 +165,10 @@ Expolratory data analysis has been conducted to gain the knowledge of relations 
 
 \begin{enumerate}
   \item\label{question:i} Which are the numerical features and which are the categorical features? 
-  \item\label{question:ii} Is there any trend to need increase in the availability of bycycles?
+  \item\label{question:ii} Is there any trend to need increase in the availability of bicycles?
 \end{enumerate}
 
-Out of that the ways to treat categorical features are different from numerical features, the features are sorted into two groupd, numerical and categorical. This sort of them can be identified according to Table \ref{tab:feature_description}. The two groups are shown in Table \ref{tab:cat_num_list}, which also answers Quesiton \ref{question:i}.
+Out of that the ways to treat categorical features are different from numerical features, the features are sorted into two groups, numerical and categorical. The kind of them can be identified according to Table \ref{tab:feature_description}. The two groups are shown in Table \ref{tab:cat_num_list}, which also answers Question \ref{question:i}. It is important to note that the temporal features can be also treated as numeric features. 
 
 \begin{table}[!ht]
 \caption{Categorical and numerical features.}
@@ -191,7 +191,7 @@ Out of that the ways to treat categorical features are different from numerical 
   \end{tabular}
 \end{table}
 
-For categorical features, first step done was to see the label balance. The result is shown in Figure \ref{fig:cate_dist}. One thing to be noted is that the feature "snow" has only one label. A flat feature will not have input to the model, thus it was excloded from training set. This will be also seen in the correlation analysis. Similarily, histgram plot was generated to visualize the distribution of numerical features (shown in Figure \ref{fig:num_dist}). 
+For categorical features, first step was to see the label balance. The result is shown in Figure \ref{fig:cate_dist}. One thing to be noted is that the feature "snow" has only one value. A flat feature will not have input to the model, thus it was excluded from training set. This is be also seen in the correlation analysis. Similarly, histogram plot was generated to visualize the distribution of numerical features (shown in Figure \ref{fig:num_dist}). 
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=0.95\linewidth]{report/figures/count_plot_category.png}
@@ -222,7 +222,7 @@ To understand the correlation among features, mostly between targets and other f
   \end{small}
 \end{figure}
 
-Droping out the smaller correlated features ($correlation \geq 0.1$), the left ones are: "temp", "humidity", "hour\_of\_day", "summertime", "dew", "weekday", and "visibility". To more intuitively see if any features can help seperate the target label. Figure \ref{fig:box_and_dist} was ploted. 
+Dropping out the smaller correlated features ($correlation \geq 0.1$), the left ones are: "temp", "humidity", "hour\_of\_day", "summertime", "dew", "weekday", and "visibility". To more intuitively see if any features can help separate the target label. Figure \ref{fig:box_and_dist} was plotted. 
 
 \begin{figure}[!ht]
   \begin{small}
@@ -230,21 +230,25 @@ Droping out the smaller correlated features ($correlation \geq 0.1$), the left o
       \includegraphics[width=0.9\textwidth]{report/figures/box_and_hist_features.png}
 
     \end{center}
-    \caption{Boxs and Histgrams for features with different targets laebls}
+    \caption{Boxes and Histograms for features with different targets labels}
     \label{fig:box_and_dist}
   \end{small}
 \end{figure}
 
 Finally, with all analysis and figures above, the Question \ref{question:ii} can be answered. \\ 
-It is seen that the label "1" ("high\_bike\_demand") is concerntrated around daytime, growth starts from early morning, drops till late evening after reaching its peak at 15:00 to 16:00. Weekday has more "high\_bike\_demand" than weekends. \\ 
-Temperature also has impact on bike demand, more bike are needed when temperture is in a comfortable region, 20 ~ 30 degC in data. This can also interprets the trend in the summertime, temperature is higher in summer, similarily for dew point.
+It is seen that the label "1" ("high\_bike\_demand") is concentrated around daytime, growth starts from early morning, drops till late evening after reaching its peak at 15:00 to 16:00. Weekday has more "high\_bike\_demand" than weekends. \\ 
+Temperature also has impact on bike demand, more bike are needed when temperature is in a comfortable region, 20 \~ 30 degC in data. This also interprets the trend in the summertime, temperature is higher in summer, same as dew point. 
 
 \section{Methodology}\label{sec:methodology}
-\subsection{Machine learning models}
-\subsubsection{Boosting}
-Boosting is an emsenble method which is built on the idea that even a week model can capture some patterns between target variables and given features. Starting from a base model, optmizing it based on the returned error can produce a new model which would become the base for next model. By ensembling the predictions from these models, the intention of boosting is to reduce bias\citep{Lindholm2022sml}.\\
 
-In this study, three maintream boosting algorithm were deployed, \textbf{AdaBoost}\citep{Lindholm2022sml}, \textbf{GradientBoost}\citep{Lindholm2022sml}, and \textbf{CatBoost}\citep{prokhorenkova2018catboost}. The methods can expressed as following equations.
+\subsection{Data splitting}
+The given data is splitting into 0.8 of all data as train set and the rest as test set. The process was done with \textit{sklearn.model\_selection.train\_test\_splitting} function. 
+
+\subsection{Machine learning models and Traning}
+\subsubsection{Boosting}
+Boosting is an ensemble method which is built on the idea that even a week model can capture some patterns between target variables and given features. Starting from a base model, optmizing it based on the returned error can produce a new model which would become the base for next model. By ensembling the predictions from these models, the intention of boosting is to reduce bias\citep{Lindholm2022sml}.\\
+
+In this study, three maintream boosting algorithm were deployed, \textbf{AdaBoost}\citep{Lindholm2022sml}, \textbf{GradientBoost}\citep{Lindholm2022sml}, and \textbf{CatBoost}\citep{prokhorenkova2018catboost}. The methods can expressed as following equations, in which $\alpha$ is weight in \textbf{AdaBoost} and learning rate in both \textbf{GradientBoost} and \textbf{CatBoost}. While \textbf{GradientBoost} and \textbf{Catboost} have the same mathematical expression, they differ fundamentally in how each base learner is trained. In Gradient Boosting, each learner fits the negative gradient of a specified loss function (f1-score in this study), whereas \textbf{Catboost} further procedure through ordered boosting and symmetric trees to prevent target leakage\citep{prokhorenkova2018catboost}. 
 
 \begin{equation}
   \text{AdaBoost:\space \space}
@@ -263,12 +267,19 @@ In this study, three maintream boosting algorithm were deployed, \textbf{AdaBoos
   \label{eq:gradiantboost}
 \end{equation}
 
+
+
 \begin{equation}
   \text{CatBoost:\space \space} 
   f^{(B)}(\mathbf{x})
-  = \sum_{b=1}^{B} \eta^{(b)} \, T^{(b)}(\mathbf{x})
+  = \sum_{b=1}^{B} \alpha^{(b)} \, T^{(b)}(\mathbf{x})
   \label{eq:catboost}
 \end{equation}
+
+To identify the best-performing boosting model among the three, multiple experiments were conducted using different feature sets, including highly correlated features (correlation threshold $>0.1$ or $>0.2$) and configurations with and without cyclic encoding of temporal features. 
+By comparison, 'temp', 'humidity', 'hour\_of\_day', 'summertime', 'dew', 'weekday', 'visibility' were chosen to be the features for the boosting models.
+
+
 \subsubsection{Logistic Regression}
 Logistic Regression is one of the most common supervised machine learning models for binary classification problems. Unlike Linear Regression, it uses a sigmoid function, where the raw output value is passed through and converted into a probability between 0 and 1. Since our problem has two possible outcomes, this model is specifically a binomial logistic regression. \\
 
@@ -291,9 +302,9 @@ Here, \(x_1, x_2, \ldots, x_n\) are the input feature values, \(w_0, w_1, \ldots
 % Here, \(\mathbb{P}\) represents the predicted probability, \(\sigma(z)\) is the sigmoid function which takes the linear combination output \(z\), and \(e^{-z}\) adjusts the curve so that the probability increases as the output \(z\) increases.  
 
 % In the logistic function, classification is made by setting a decision boundary, usually 0.5. If \(\mathbb{P}\) is greater than 0.5, the instance is classified as 1; otherwise, it is classified as 0.
-\subsubsection{K-Nearest Neighbours}
+\subsubsection{K-Nearest Neighbors}
 
-K-Nearest Neighbours (KNN) is a supervised machine learning algorithm used for both classification and regression problems. It works by finding the \(K\) nearest points to a given data point and making predictions based on the majority class for classification or the average value for regression.
+K-Nearest Neighbors (KNN) is a supervised machine learning algorithm used for both classification and regression problems. It works by finding the \(K\) nearest points to a given data point and making predictions based on the majority class for classification or the average value for regression.
 
 KNN is a simple, non-parametric, and lazy learning algorithm because it performs computation during prediction rather than during training.
 
@@ -303,7 +314,7 @@ The distance between two data points, \(\mathbf{x}_1\) and \(\mathbf{x}_2\), is 
 d(\mathbf{x}_1, \mathbf{x}_2) = \sqrt{(x_{11} - x_{21})^2 + (x_{12} - x_{22})^2 + \cdots + (x_{1n} - x_{2n})^2}
 \end{equation}
 
-For a new data point \(\mathbf{X}_{\text{new}}\), the algorithm calculates its distance from all instances in the dataset and selects the \(K\) instances with the smallest distances. The final predicted class is determined based on the majority vote among these \(K\) nearest neighbours.  
+For a new data point \(\mathbf{X}_{\text{new}}\), the algorithm calculates its distance from all instances in the dataset and selects the \(K\) instances with the smallest distances. The final predicted class is determined based on the majority vote among these \(K\) nearest neighbors.  
 
 It is important to note that if \(K\) is too small, the model becomes overfitted. If \(K\) is too large, the model becomes underfitted. In our project, we selected the optimal \(K\) value using the \texttt{GridSearchCV} function.
 
@@ -313,15 +324,16 @@ Tree-based methods rely on recursively splitting the feature space into smaller,
 
 In this study, three main tree-based approaches were explored: Decision Tree, Random Forest, and Bagging Classifier. A Decision Tree is prone to overfitting due to high variance. In contrast, the Bagging Classifier and Random Forest Classifier reduce this variance by training many independent trees on bootstrapped samples of the dataset and averaging their predictions. The Random Forest further extends to random feature selection at each split, reducing correlation among individual trees and typically improving generalization performance.
 
-\subsection{Validation}
-K-fold method with 5 subset was used for cross-validation to the deployed models.
-Considering that label are imbalanced in the target variable, metrics like accuracy would not be a good choice for perfomance measurement. F-score, given by equation \ref{eq:f-score}, is used for measuring the perfomance in this case.  
+\subsection{Validation and Hyperparameter Optimization}
+Stratified K-fold method with 5 subset was used for cross-validation to the deployed models.
+Considering that label are imbalanced in the target variable, metrics like accuracy would not be a good choice for performance measurement. F-score, given by equation \ref{eq:f-score}, is used for measuring the performance in this case.  
 
 \begin{equation}
   F_1 = 2 \cdot \frac{precision \cdot recall}{precision + recall} = \frac{2TP}{2TP + FP + FN}
   \label{eq:f-score}
 \end{equation}
 
+As for tuning the hyperparameter, \textbf{Grid search} technique with given parameters grid was implemented to find the hyperparameters to get best performance out of a model. 
 
 \section{Results}
 % \subsection{Boosting}
